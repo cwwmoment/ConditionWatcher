@@ -1,10 +1,11 @@
 package com.azimolabs.f1sherkk.conditionwatcherexample;
 
 import android.content.Intent;
-import android.support.test.espresso.Espresso;
-import android.support.test.espresso.IdlingPolicies;
-import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
+import androidx.test.espresso.Espresso;
+import androidx.test.espresso.IdlingPolicies;
+import androidx.test.espresso.IdlingRegistry;
+import androidx.test.rule.ActivityTestRule;
+import androidx.test.runner.AndroidJUnit4;
 
 import com.azimolabs.f1sherkk.conditionwatcherexample.data.Server;
 import com.azimolabs.f1sherkk.conditionwatcherexample.idlingResources.BtnStartAnimationIdlingResource;
@@ -21,16 +22,16 @@ import org.junit.runner.RunWith;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static android.support.test.espresso.Espresso.onData;
-import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.assertion.ViewAssertions.matches;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static androidx.test.espresso.Espresso.onData;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
+import static com.schibsted.spain.barista.interaction.BaristaListInteractions.clickListItem;
 import static org.hamcrest.Matchers.anything;
 
-@RunWith(AndroidJUnit4.class)
 public class IdlingResourceExampleTests {
 
     @Rule
@@ -57,21 +58,21 @@ public class IdlingResourceExampleTests {
         LoadingDialogIdlingResource loadingDialogIdlingResource = new LoadingDialogIdlingResource();
 
         // SplashActivity
-        Espresso.registerIdlingResources(btnStartAnimationIdlingResource);
+        IdlingRegistry.getInstance().register(btnStartAnimationIdlingResource);
         onView(withId(R.id.btnStart)).perform(click());
-        Espresso.unregisterIdlingResources(btnStartAnimationIdlingResource);
+        IdlingRegistry.getInstance().unregister(btnStartAnimationIdlingResource);
 
         // ListActivity
-        Espresso.registerIdlingResources(serverListLoadingIdlingResource);
+        IdlingRegistry.getInstance().register(serverListLoadingIdlingResource);
         onData(anything()).inAdapterView(withId(R.id.lvList)).atPosition(2).perform(click());
-        Espresso.unregisterIdlingResources(serverListLoadingIdlingResource);
+        IdlingRegistry.getInstance().unregister(serverListLoadingIdlingResource);
 
         // DetailsActivity
-        Espresso.registerIdlingResources(loadingDialogIdlingResource);
+        IdlingRegistry.getInstance().register(loadingDialogIdlingResource);
         onView(withText(thirdServer.getName())).check(matches(isDisplayed()));
         onView(withText(thirdServer.getAddress())).check(matches(isDisplayed()));
         onView(withText(thirdServer.getPort())).check(matches(isDisplayed()));
-        Espresso.unregisterIdlingResources(serverListLoadingIdlingResource);
+        IdlingRegistry.getInstance().unregister(serverListLoadingIdlingResource);
     }
 
     @Test
@@ -79,11 +80,16 @@ public class IdlingResourceExampleTests {
         BtnStartAnimationIdlingResource btnStartAnimationIdlingResource = new BtnStartAnimationIdlingResource();
 
         // SplashActivity
-        Espresso.registerIdlingResources(btnStartAnimationIdlingResource);
+        IdlingRegistry.getInstance().register(btnStartAnimationIdlingResource);
         onView(withId(R.id.btnStart)).perform(click());
-        Espresso.unregisterIdlingResources(btnStartAnimationIdlingResource);
+        IdlingRegistry.getInstance().unregister(btnStartAnimationIdlingResource);
 
         // ListActivity
-        onData(anything()).inAdapterView(withId(R.id.lvList)).atPosition(2).perform(click());
+//        onData(anything()).inAdapterView(withId(R.id.lvList)).atPosition(2).perform(click());
+        ServerListLoadingIdlingResource serverListLoadingIdlingResource = new ServerListLoadingIdlingResource();
+        IdlingRegistry.getInstance().register(serverListLoadingIdlingResource);
+        clickListItem(R.id.lvList, 2);
+        IdlingRegistry.getInstance().unregister(serverListLoadingIdlingResource);
+
     }
 }

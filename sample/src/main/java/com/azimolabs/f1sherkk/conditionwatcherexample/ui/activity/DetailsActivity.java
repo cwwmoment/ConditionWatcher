@@ -1,9 +1,9 @@
 package com.azimolabs.f1sherkk.conditionwatcherexample.ui.activity;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.azimolabs.f1sherkk.conditionwatcherexample.R;

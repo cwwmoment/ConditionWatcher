@@ -1,10 +1,10 @@
 package com.azimolabs.f1sherkk.conditionwatcherexample.idlingResources;
 
 import android.app.Activity;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.IdlingResource;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.widget.ListView;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.espresso.IdlingResource;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.azimolabs.f1sherkk.conditionwatcherexample.R;
 import com.azimolabs.f1sherkk.conditionwatcherexample.utils.TestApplication;
@@ -37,7 +37,7 @@ public class ServerListLoadingIdlingResource implements IdlingResource {
     }
 
     public Activity getCurrentActivity() {
-        return ((TestApplication) InstrumentationRegistry.getTargetContext().getApplicationContext()).getCurrentActivity();
+        return ((TestApplication) ApplicationProvider.getApplicationContext()).getCurrentActivity();
     }
 
     @Override

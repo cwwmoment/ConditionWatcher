@@ -2,8 +2,9 @@ package com.azimolabs.f1sherkk.conditionwatcherexample.idlingResources;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.espresso.IdlingResource;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.espresso.IdlingResource;
 
 import com.azimolabs.f1sherkk.conditionwatcherexample.ui.dialog.LoadingDialog;
 import com.azimolabs.f1sherkk.conditionwatcherexample.utils.TestApplication;
@@ -36,7 +37,7 @@ public class LoadingDialogIdlingResource implements IdlingResource {
     }
 
     public Activity getCurrentActivity() {
-        return ((TestApplication) InstrumentationRegistry.getTargetContext().getApplicationContext()).getCurrentActivity();
+        return ((TestApplication) ApplicationProvider.getApplicationContext()).getCurrentActivity();
     }
 
     @Override

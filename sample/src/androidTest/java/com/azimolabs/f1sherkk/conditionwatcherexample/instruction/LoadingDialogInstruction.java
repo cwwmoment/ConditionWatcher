@@ -2,7 +2,8 @@ package com.azimolabs.f1sherkk.conditionwatcherexample.instruction;
 
 import android.app.Activity;
 import android.app.DialogFragment;
-import android.support.test.InstrumentationRegistry;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 
 import com.azimolabs.conditionwatcher.Instruction;
 import com.azimolabs.f1sherkk.conditionwatcherexample.ui.dialog.LoadingDialog;
@@ -20,7 +21,7 @@ public class LoadingDialogInstruction extends Instruction {
     @Override
     public boolean checkCondition() {
         Activity activity = ((TestApplication)
-                InstrumentationRegistry.getTargetContext().getApplicationContext()).getCurrentActivity();
+                ApplicationProvider.getApplicationContext()).getCurrentActivity();
         if (activity == null) return false;
 
         DialogFragment f = (DialogFragment) activity.getFragmentManager().findFragmentByTag(LoadingDialog.TAG);

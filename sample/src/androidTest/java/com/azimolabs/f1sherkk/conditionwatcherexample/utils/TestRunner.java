@@ -2,7 +2,7 @@ package com.azimolabs.f1sherkk.conditionwatcherexample.utils;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.test.runner.AndroidJUnitRunner;
+import androidx.test.runner.AndroidJUnitRunner;
 
 /**
  * Created by F1sherKK on 14/04/16.

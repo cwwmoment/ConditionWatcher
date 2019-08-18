@@ -1,15 +1,14 @@
 package com.azimolabs.f1sherkk.conditionwatcherexample.instruction;
 
 import android.app.Activity;
-import android.app.Instrumentation;
-import android.support.test.InstrumentationRegistry;
-import android.support.v4.widget.SwipeRefreshLayout;
+
+import androidx.test.InstrumentationRegistry;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.test.core.app.ApplicationProvider;
 
 import com.azimolabs.conditionwatcher.Instruction;
 import com.azimolabs.f1sherkk.conditionwatcherexample.R;
 import com.azimolabs.f1sherkk.conditionwatcherexample.utils.TestApplication;
-
-import static com.azimolabs.f1sherkk.conditionwatcherexample.R.id.srItemList;
 
 /**
  * Created by F1sherKK on 15/04/16.
@@ -24,7 +23,7 @@ public class ServerListLoadingInstruction extends Instruction {
     @Override
     public boolean checkCondition() {
         Activity activity = ((TestApplication)
-                InstrumentationRegistry.getTargetContext().getApplicationContext()).getCurrentActivity();
+                ApplicationProvider.getApplicationContext()).getCurrentActivity();
         if (activity == null) return false;
 
         SwipeRefreshLayout srItemList = (SwipeRefreshLayout) activity.findViewById(R.id.srItemList);

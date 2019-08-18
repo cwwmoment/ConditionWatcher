@@ -43,14 +43,16 @@ public class TestApplication extends Application implements Application.Activity
     }
 
     @Override
-    public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+    public void onActivitySaveInstanceState(Activity activity, Bundle bundle) {
 
     }
+
 
     @Override
     public void onActivityDestroyed(Activity activity) {
 
     }
+
 
     public Activity getCurrentActivity() {
         return currentActivity;
